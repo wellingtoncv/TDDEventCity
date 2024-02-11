@@ -1,6 +1,9 @@
 package com.devsuperior.demo.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Locale.Category;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +15,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_event")
-public class Event {
+public class Event implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +24,11 @@ public class Event {
 	private String name;
 	private LocalDate date;
 	private String url;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
-	
+
 	public Event() {
 	}
 
@@ -75,4 +79,10 @@ public class Event {
 	public void setCity(City city) {
 		this.city = city;
 	}
+
+	public void setCityId(Long cityId) {
+		// TODO Auto-generated method stub
+
+	}
+	
 }

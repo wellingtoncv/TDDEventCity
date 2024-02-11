@@ -16,17 +16,16 @@ public class EventService {
 
 	@Autowired
 	private EventRepository repository;
-	
 
 	@Transactional
 	public EventDTO update(Long id, EventDTO dto) {
 		try {
 			Event entity = repository.getReferenceById(id);
-			//copyDtoToEntity(dto, entity);
+
 			entity = repository.save(entity);
 			return new EventDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found" + id);
+			throw new ResourceNotFoundException("Id not found = " + id);
 		}
 	}
 
